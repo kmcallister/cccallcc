@@ -16,11 +16,9 @@ int g(cont<int> k) {
 }
 
 int main() {
-    using namespace std;
+    std::cout << "f => " << call_cc<int>(f) << std::endl;
 
-    cout << "f => " << call_cc<int>(f) << endl;
-
-    cout << "g => " << call_cc<int>(g) << endl;
+    std::cout << "g => " << call_cc<int>(g) << std::endl;
     if (global_k)
         (*global_k)(1);
 }
