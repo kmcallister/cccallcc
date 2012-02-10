@@ -2,6 +2,7 @@
 #define __CCCALLCC_HPP__
 
 #include <functional>
+#include <memory>
 #include <unistd.h>
 
 template <typename T>
@@ -10,15 +11,34 @@ public:
     static T call_cc(std::function<T (cont<T>)> f);
 
     void operator()(const T &x) {
-        write(m_pipe, &x, sizeof(T));
-        exit(0);
+        m_impl_ptr->invoke(x);
     }
 
 private:
-    cont<T>(int pipe)
-        : m_pipe(pipe) { }
+    class impl {
+    public:
+        impl(int pipe)
+            : m_pipe(pipe)
+            { }
 
-    int m_pipe;
+        ~impl() {
+            close(m_pipe);
+        }
+
+        void invoke(const T &x) {
+            write(m_pipe, &x, sizeof(T));
+            exit(0);
+        }
+
+    private:
+        int m_pipe;
+    };
+
+    cont(int pipe)
+        : m_impl_ptr(new impl(pipe))
+        { }
+
+    std::shared_ptr<impl> m_impl_ptr;
 };
 
 template <typename T>
