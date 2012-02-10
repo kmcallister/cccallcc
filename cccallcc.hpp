@@ -77,4 +77,4 @@ static inline T call_cc(typename cont<T>::call_cc_arg f) {
     return cont<T>::call_cc(f);
 }
 
-#endif // !defined(__CCALLCC_HPP__)
+#endif // !defined(__CCCALLCC_HPP__)
