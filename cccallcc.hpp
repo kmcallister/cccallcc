@@ -41,4 +41,9 @@ private:
     int m_pipe;
 };
 
+template <typename T>
+static inline T call_cc(std::function<T (cont<T>)> f) {
+    return cont<T>::call_cc(f);
+}
+
 #endif // !defined(__CCALLCC_HPP__)
