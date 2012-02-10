@@ -8,7 +8,9 @@
 template <typename T>
 class cont {
 public:
-    static T call_cc(std::function<T (cont<T>)> f);
+    typedef std::function<T (cont<T>)> call_cc_arg;
+
+    static T call_cc(call_cc_arg f);
 
     void operator()(const T &x) {
         m_impl_ptr->invoke(x);
@@ -42,7 +44,7 @@ private:
 };
 
 template <typename T>
-T cont<T>::call_cc(std::function<T (cont<T>)> f) {
+T cont<T>::call_cc(call_cc_arg f) {
     int fd[2];
     pipe(fd);
     int read_fd  = fd[0];
@@ -65,7 +67,7 @@ T cont<T>::call_cc(std::function<T (cont<T>)> f) {
 }
 
 template <typename T>
-static inline T call_cc(std::function<T (cont<T>)> f) {
+static inline T call_cc(typename cont<T>::call_cc_arg f) {
     return cont<T>::call_cc(f);
 }
 
