@@ -59,7 +59,7 @@ T cont<T>::call_cc(call_cc_arg f) {
         // child
         close(write_fd);
         char buf[sizeof(T)];
-        if (read(read_fd, buf, sizeof(T)) < sizeof(T))
+        if (read(read_fd, buf, sizeof(T)) < ssize_t(sizeof(T)))
             exit(0);
         close(read_fd);
         return *reinterpret_cast<T*>(buf);
