@@ -56,8 +56,7 @@ T cont<T>::call_cc(call_cc_arg f) {
     int read_fd  = fd[0];
     int write_fd = fd[1];
 
-    pid_t pid = fork();
-    if (pid) {
+    if (fork()) {
         // parent
         close(read_fd);
         return f( cont<T>(write_fd) );
