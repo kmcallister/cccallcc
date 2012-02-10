@@ -5,6 +5,12 @@
 #include <memory>
 #include <unistd.h>
 
+#ifdef __GNUC__
+#define NORETURN __attribute__((noreturn))
+#else
+#define NORETURN
+#endif
+
 template <typename T>
 class cont {
 public:
@@ -12,7 +18,7 @@ public:
 
     static T call_cc(call_cc_arg f);
 
-    void operator()(const T &x) {
+    void operator()(const T &x) NORETURN {
         m_impl_ptr->invoke(x);
     }
 
@@ -27,7 +33,7 @@ private:
             close(m_pipe);
         }
 
-        void invoke(const T &x) {
+        void invoke(const T &x) NORETURN {
             write(m_pipe, &x, sizeof(T));
             exit(0);
         }
