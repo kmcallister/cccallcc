@@ -1,7 +1,7 @@
 #include <iostream>
 #include <boost/optional.hpp>
 
-#include "cccallcc.hpp"
+#include "cccallcc_fork.hpp"
 
 int f(cont<int> k) {
     std::cout << "f called" << std::endl;
