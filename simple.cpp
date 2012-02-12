@@ -6,6 +6,7 @@
 int f(cont<int> k) {
     std::cout << "f called" << std::endl;
     k(1);
+    std::cout << "k called" << std::endl;
     return 0;
 }
 
