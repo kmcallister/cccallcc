@@ -72,7 +72,7 @@ T cont<T>::call_cc(call_cc_arg f) {
 }
 
 template <typename T>
-static inline T call_cc(typename cont<T>::call_cc_arg f) {
+inline T call_cc(typename cont<T>::call_cc_arg f) {
     return cont<T>::call_cc(f);
 }
 
