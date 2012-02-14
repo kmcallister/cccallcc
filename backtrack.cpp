@@ -35,8 +35,8 @@ int integer(int m, int n) {
 }
 
 void factor(int n) {
-    int i = integer(2, 100);
-    int j = integer(2, 100);
+    const int i = integer(2, 100);
+    const int j = integer(2, 100);
 
     if (i*j != n)
         fail();
@@ -77,7 +77,7 @@ void solve_maze() {
               (y < 0) || (y >= maze_size)  )
             fail();
 
-        int i = y*(maze_size+1) + x;
+        const int i = y*(maze_size+1) + x;
         if (maze[i] != ' ')
             fail();
         maze[i] = 'X';
