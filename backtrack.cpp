@@ -22,6 +22,10 @@ void fail() {
     }
 }
 
+void cut() {
+    checkpoint = boost::none;
+}
+
 int integer(int m, int n) {
     for (int i=m; i<=n; i++) {
         if (guess())
@@ -89,6 +93,7 @@ void solve_maze() {
 
 int main() {
     factor(391);
+    cut();
     solve_maze();
     return 0;
 }
