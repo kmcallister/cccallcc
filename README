@@ -1,1 +1,5 @@
 An (unreasonable) implementation of call/cc for C++, using fork(2).
+
+You can find a detailed writeup at:
+
+  http://mainisusuallyafunction.blogspot.com/2012/02/continuations-in-c-with-fork.html
