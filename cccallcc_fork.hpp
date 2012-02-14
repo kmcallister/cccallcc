@@ -1,5 +1,5 @@
-#ifndef __CCCALLCC_HPP__
-#define __CCCALLCC_HPP__
+#ifndef __CCCALLCC_FORK_HPP__
+#define __CCCALLCC_FORK_HPP__
 
 #include <functional>
 #include <memory>
@@ -76,4 +76,4 @@ inline T call_cc(typename cont<T>::call_cc_arg f) {
     return cont<T>::call_cc(f);
 }
 
-#endif // !defined(__CCCALLCC_HPP__)
+#endif // !defined(__CCCALLCC_FORK_HPP__)
