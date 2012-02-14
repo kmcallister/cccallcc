@@ -1,0 +1,1 @@
+An (unreasonable) implementation of call/cc for C++, using fork(2).
